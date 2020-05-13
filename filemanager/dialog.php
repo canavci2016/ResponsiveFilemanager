@@ -39,6 +39,17 @@ include 'include/utils.php';
 
 $subdir_path = '';
 
+ if(isset($_GET['navigate-dir'])){
+  $dirName = $config['current_path'].$_GET['navigate-dir'];
+
+  if (!file_exists($dirName)) {
+      mkdir($dirName);
+  }
+
+  $_GET['fldr']=$_GET['navigate-dir'];
+
+ }
+
 if (isset($_GET['fldr']) && !empty($_GET['fldr'])) {
     $subdir_path = rawurldecode(trim(strip_tags($_GET['fldr']), "/"));
 } elseif (isset($_SESSION['RF']['fldr']) && !empty($_SESSION['RF']['fldr'])) {
